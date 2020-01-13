@@ -1,0 +1,89 @@
+version: "2"
+services:
+  node1:
+    image: "node:8"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - /Users/Francesco/Desktop/pg_rc:/home/node/app
+    container_name: homepage1
+    expose:
+      - 8888
+    command: "npm run start"
+
+  node1.1:
+    image: "node:8"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - /Users/Francesco/Desktop/pg_rc:/home/node/app
+    container_name: homepage2
+    expose:
+      - 8888
+    command: "npm run start"
+
+  node2:
+    image: "node:8"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - /Users/Francesco/Desktop/pg_rc:/home/node/app
+    container_name: chatpubblica1
+    expose:
+      - 3230
+    command: "npm run pubblica"
+
+  node2.2:
+    image: "node:8"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - /Users/Francesco/Desktop/pg_rc:/home/node/app
+    container_name: chatpubblica2
+    expose:
+      - 3230
+    command: "npm run pubblica"
+
+  node3:
+    image: "node:8"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - /Users/Francesco/Desktop/pg_rc:/home/node/app
+    container_name: chatprivata1
+    expose:
+      - 2000
+    command: "npm run privata"
+
+  node3.3:
+    image: "node:8"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - /Users/Francesco/Desktop/pg_rc:/home/node/app
+    container_name: chatprivata2
+    expose:
+      - 2000
+    command: "npm run privata"
+
+  nginx:
+    image: "nginx"
+    volumes:
+      - /Users/Francesco/Desktop/pg_rc/nginx.conf:/etc/nginx/nginx.conf
+    container_name: nginx
+    ports:
+      - "8888:8888"
+      - "3230:5000"
+      - "2000:4545"
